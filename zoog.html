@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script>
+    
+    <script>
+        function setup() {
+            createCanvas(800,600);
+        }
+
+        function draw() {
+        
+            background(81, 208, 255)
+        
+            //arms
+            stroke(247, 75, 12)
+            strokeWeight(3)
+            fill(226, 113, 13)
+            rectMode(CORNER)
+            rect(240, 240, 100, 40) //right
+            rect(450, 240,100,40) //left
+            //left fingers
+            strokeWeight(5)
+            line (195,297,240,280) //first 
+            line(195,260, 240, 260)//second 
+            line(200,230, 240, 240) //third 
+            
+            //right fingers
+            line(550, 240, 590, 230); // first
+            line(550, 260, 590, 260); //second
+            line(550,280, 590,290); //third
+            
+             //body
+            stroke(247, 75, 12)
+            strokeWeight(3)
+            ellipse (400,340, 200, 240)
+            
+            //belly
+            fill(188, 33, 33)
+            ellipse (400,340,120 ,140)
+            
+            //head
+            fill(239, 99, 11)
+            ellipse (400, 130,200,200);
+            
+            //mouth
+            stroke(0)
+            strokeWeight(3)
+            fill(244, 252, 0)
+            rectMode(CENTER)
+            rect(400,160,80,20)
+            
+            //eyes
+            fill(106, 142, 51)
+            rect(400,80,120,40)
+            fill(12, 247, 23)
+            rect(370,80,40,20) //right
+            rect(430,80,40,20) //left
+            
+            
+            //wheel
+            stroke(247, 75, 12)
+            strokeWeight(3)
+            fill(224, 108, 35)
+            ellipse(400, 520, 120, 120);      
+            fill(214, 237, 11)
+            ellipse(400,520, 50,50)
+            fill(214, 8, 8)
+            strokeWeight(21)
+            stroke(255, 0, 0)
+            point(400,520)
+            
+            //text
+            stroke(0);
+            strokeWeight(1)
+            fill(239, 143, 107)
+            textSize(16)
+            text("I'm the", 375,330);
+            text("sensation!!", 360, 358)
+        }
+    </script>
+</head>
+
+<body>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/alexanderu1728/p5js/blob/master/zoog.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+</html>
