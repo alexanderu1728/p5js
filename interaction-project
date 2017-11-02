@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script>
+
+    <script>
+        var a = 255
+        var b = 255
+        var c = 0
+        var d = 0
+        var e = 255
+
+        function setup() {
+            createCanvas(800, 600);
+
+
+
+        }
+
+        function draw() {
+
+            //headphones
+            fill(181, 199, 229, c)
+            strokeWeight(0)
+            rect(mouseX - 190, mouseY - 240, 40, 185);
+            rect(mouseX - 150, mouseY - 240, 300, 40)
+            rect(mouseX + 150, mouseY - 240, 40, 185)
+            //ears
+            fill(255, 115, 28, c)
+            ellipse(mouseX - 125, mouseY - 25, 200, 200) //left
+            fill(252, 242, 55, c)
+            ellipse(mouseX - 125, mouseY - 25, 160, 160) //left
+            fill(255, 115, 28, c)
+            ellipse(mouseX + 125, mouseY - 25, 200, 200) //right
+            fill(252, 242, 55, c)
+            ellipse(mouseX + 125, mouseY - 25, 160, 160) //right
+            //face
+            fill(106, 209, 110, a);
+            rect(mouseX - 150, mouseY - 150, 300, 300); //square
+            fill(219, 50, 50, b);
+            rect(mouseX - 135, mouseY - 135, 120, 60) //left eye
+            rect(mouseX + 17, mouseY - 135, 120, 60) //right eye
+            ellipse(mouseX, mouseY, 60, 60)
+            rect(mouseX - 135, mouseY + 60, 270, 70)
+
+
+
+        }
+
+        function mouseMoved() {
+            a = 255;
+            b = 255;
+            c = 0;
+            background(0)
+        }
+
+
+        function mouseDragged() {
+            a = 10
+            b = 7
+
+        }
+
+        function keyPressed() {
+            c = 10
+        }
+    </script>
+</head>
+
+<body>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/alexanderu1728/p5js/blob/master/interaction-project.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+
+</html>
