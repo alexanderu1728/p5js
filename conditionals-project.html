@@ -1,0 +1,484 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>p5js Template</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.3/p5.js"></script>
+
+    <script>
+        var x = 275
+        var y = 365
+        var x1 = 275
+        var y1 = 365
+        var x2 = 255
+        var y2 = 30
+        var i = 0
+        var s = 0.01;
+        var a = 255
+        var r = -10
+        var v = 10
+
+        function setup() {
+            createCanvas(550, 620);
+        }
+
+        function draw() {
+            background(0);
+            //set numbers
+            fill(181, 197, 204)
+                s +=0.01
+
+            text("Time: " + round(s), 460, 30);
+            if(s>10){
+                r=-20
+                v=20
+            }
+            if(s>20){
+                r=-30
+                v=30
+            }
+            if(s>30){
+                r=-40
+                v=40
+            }
+             if(s>40){
+                r=-50
+                v=50
+            }
+            if(s>50){
+                r=-80
+                v=80
+            }
+            //level(walls)
+            fill(66, 113, 244)
+            strokeWeight(0);
+            rect(0, 0, 10, 285); //wall top left
+            rect(0, 335, 10, 310) //wall bottom left
+            rect(0, 610, 550, 10) //bottom wall
+            rect(540, 335, 10, 285) // wall bottom right
+            rect(540, 0, 10, 285); // wall top right
+            rect(0, 0, 550, 10); // top wall
+            rect(60, 60, 190, 170) //top left square
+            rect(301, 60, 190, 170) //top right square
+            rect(60, 390, 190, 170) // bottom left square
+            rect(301, 390, 190, 170) // bottom right square
+            rect(210, 285, 130, 50) //middle rectangle
+            rect(60, 285, 100, 50) // left rectangle
+            rect(390, 285, 100, 50) //right rectangle
+            //enemy
+                fill(68, 242, 55)
+            rect(x2,y2,40,40)
+            x2+=random(r,v)
+            y2+=random(r,v)
+            x2 = constrain(x2,0,500)
+            y2= constrain(y2,0,570)
+            
+            if(x>= x2 && x<= x2+40 && y >= y2 && y <= y2+40){
+            x = 275
+            y= 365
+            x1 = 275
+            y1= 365
+            s = 0
+            r = -10
+            v = 10
+}
+            //player 2
+            fill(242, 14, 14, i)
+
+            ellipse(x1, y1, 40, 40)
+            fill(10, 10, 10, i)
+            ellipse(x1 - 8, y1 - 6, 8, 8)
+            ellipse(x1 + 8, y1 - 6, 8, 8)
+
+
+            //keys
+            if (keyIsDown(68) && i == 255) {
+                x1 += 5;
+                //walls
+                if (x1 >= 520 && x1 < 530 && y1 < 305) {
+                    x1 = 520;
+                }
+                if (x1 >= 520 && x1 < 530 && y1 > 315) {
+                    x1 = 520
+                }
+                //holes
+                if (x1 > 580) {
+                    x1 = -30
+                }
+                //top left square
+                if (y1 > 40 && y1 < 250 && x1 > 39 && x1 < 270) {
+                    x1 = 39
+                }
+                //top right square
+                if (y1 > 40 && y1 < 250 && x1 > 281 && x1 < 491) {
+                    x1 = 281
+                }
+                //bottom left square
+                if (y1 > 390 && y1 < 580 && x1 > 40 && x1 < 270) {
+                    x1 = 40;
+                }
+                //bottom right square
+                if (y1 > 390 && y1 < 580 && x1 > 281 && x1 < 511) {
+                    x1 = 281;
+                }
+                //left rectangle
+                if (y1 > 265 && y1 < 355 && x1 > 39 && x1 < 180) {
+                    x1 = 39;
+                }
+                //middle rectangle
+                if (y1 > 265 && y1 < 355 && x1 > 189 && x1 < 360) {
+                    x1 = 189;
+                }
+                //right rectangle
+                if (y1 > 265 && y1 < 355 && x1 > 369 && x1 < 510) {
+                    x1 = 369
+                }
+
+            }
+            if (keyIsDown(65) && i == 255) {
+                x1 -= 5;
+                //walls
+                if (x1 <= 31 && y1 < 305) {
+                    x1 = 31;
+                }
+                if (x1 <= 31 && y1 > 315) {
+                    x1 = 31
+                }
+                //holes
+                if (x1 < -30) {
+                    x1 = 580
+                }
+                //top left square
+                if (y1 > 40 && y1 < 250 && x1 > 39 && x1 < 271) {
+                    x1 = 271
+                }
+                //top right square
+                if (y1 > 40 && y1 < 250 && x1 > 281 && x1 < 512) {
+                    x1 = 512
+                }
+
+                //bottom left square
+                if (y1 > 371 && y1 < 580 && x1 < 271 && x1 > 40) {
+                    x1 = 271;
+                }
+                //bottom right square
+                if (x1 > 281 && x1 < 512 && y1 > 370 && y1 < 580) {
+                    x1 = 512;
+                }
+                //left rectangle
+                if (y1 > 265 && y1 < 355 && x1 > 40 && x1 < 181) {
+                    x1 = 181;
+                }
+                //middle rectangle
+                if (y1 > 265 && y1 < 355 && x1 > 189 && x1 < 361) {
+                    x1 = 361;
+                }
+                //right rectangle
+                if (y1 > 265 && y1 < 355 && x1 > 369 && x1 < 511) {
+                    x1 = 511
+                }
+
+            }
+            if (keyIsDown(87) && i == 255) {
+                y1 -= 5;
+                //walls
+                if (x1 >= 521 && y1 < 306) {
+                    y = 306
+                }
+                if (x1 <= 30 && y1 < 306) {
+                    y1 = 306
+                }
+                if (y1 <= 30) {
+                    y1 = 30;
+                }
+                //top left square
+                if (x1 > 40 && x1 < 271 && y1 < 251 && y1 > 40) {
+                    y1 = 251;
+                }
+                //top right square
+                if (x1 > 281 && x1 < 511 && y1 > 40 && y1 < 250) {
+                    y1 = 250;
+                }
+
+                //bottom left square
+                if (x1 > 40 && x1 < 270 && y1 < 581 && y1 > 390) {
+                    y1 = 581;
+                }
+                //bottom right square
+                if (x1 > 281 && x1 < 512 && y1 > 391 && y1 < 581) {
+                    y1 = 581;
+                }
+                //left rectangle
+                if (x1 > 40 && x1 < 180 && y1 > 264 && y1 < 356) {
+                    y1 = 356
+                }
+                //middle rectangle
+                if (y1 > 265 && y1 < 356 && x1 > 189 && x1 < 361) {
+                    y1 = 356;
+                }
+                //right rectangle
+                if (y1 > 265 && y1 < 356 && x1 > 369 && x1 < 510) {
+                    y1 = 356
+                }
+
+            }
+            if (keyIsDown(83) && i == 255) {
+                y1 += 5;
+                //wall
+                if (y1 >= 590) {
+                    y1 = 590
+                }
+                if (x1 >= 521 && y1 > 315) {
+                    y1 = 315
+                }
+                if (x1 <= 30 && y1 > 315) {
+                    y1 = 315
+
+                }
+                //top left square
+                if (x1 > 40 && x1 < 270 && y1 < 251 && y1 > 39) {
+                    y1 = 39;
+                }
+                //top right square
+                if (x1 > 281 && x1 < 511 && y1 > 39 && y1 < 250) {
+                    y1 = 39;
+                }
+                //bottom left square
+                if (x1 > 40 && x1 < 270 && y1 < 581 && y1 > 371) {
+                    y1 = 371;
+                }
+                //bottom right square
+                if (x1 > 281 && x1 < 512 && y1 > 370 && y1 < 580) {
+                    y1 = 370;
+                }
+                //left rectangle
+                if (x1 > 40 && x1 < 180 && y1 > 264 && y1 < 356) {
+                    y1 = 264
+                }
+                //middle rectangle
+                if (y1 > 264 && y1 < 355 && x1 > 189 && x1 < 361) {
+                    y1 = 264;
+                }
+                //right rectangle
+                if (y1 > 264 && y1 < 356 && x1 > 369 && x1 < 510) {
+                    y1 = 264
+                }
+
+            }
+
+
+            if (keyCode == 87 || keyCode == 83 || keyCode == 65 || keyCode == 68) {
+                i = 255;
+            }
+
+
+
+
+
+
+            //player
+            fill(255, 250, 0)
+            ellipse(x, y, 40, 40)
+            fill(10)
+            ellipse(x - 8, y - 6, 8, 8)
+            ellipse(x + 8, y - 6, 8, 8)
+
+            //keys
+            if (keyIsDown(RIGHT_ARROW)) {
+                x += 5;
+                //walls
+                if (x >= 520 && x < 530 && y < 305) {
+                    x = 520;
+                }
+                if (x >= 520 && x < 530 && y > 315) {
+                    x = 520
+                }
+                //holes
+                if (x > 580) {
+                    x = -30
+                }
+                //top left square
+                if (y > 40 && y < 250 && x > 39 && x < 270) {
+                    x = 39
+                }
+                //top right square
+                if (y > 40 && y < 250 && x > 281 && x < 491) {
+                    x = 281
+                }
+                //bottom left square
+                if (y > 371 && y < 580 && x > 40 && x < 270) {
+                    x = 40;
+                }
+                //bottom right square
+                if (y > 370 && y < 580 && x > 281 && x < 511) {
+                    x = 281;
+                }
+                //left rectangle
+                if (y > 265 && y < 355 && x > 39 && x < 180) {
+                    x = 39;
+                }
+                //middle rectangle
+                if (y > 265 && y < 355 && x > 189 && x < 360) {
+                    x = 189;
+                }
+                //right rectangle
+                if (y > 265 && y < 355 && x > 369 && x < 510) {
+                    x = 369
+                }
+
+            }
+            if (keyIsDown(LEFT_ARROW)) {
+                x -= 5;
+                
+                //walls
+                if (x <= 31 && y < 305) {
+                    x = 31;
+                }
+                if (x <= 31 && y > 315) {
+                    x = 31
+                }
+                //holes
+                if (x < -30) {
+                    x = 580
+                }
+
+                //top left square
+                if (y > 40 && y < 250 && x > 39 && x < 271) {
+                    x = 271
+                }
+                //top right square
+                if (y > 40 && y < 250 && x > 281 && x < 512) {
+                    x = 512
+                }
+
+                //bottom left square
+                if (y > 371 && y < 580 && x < 271 && x > 40) {
+                    x = 271;
+                }
+                //bottom right square
+                if (x > 281 && x < 512 && y > 370 && y < 580) {
+                    x = 512;
+                }
+                //left rectangle
+                if (y > 265 && y < 355 && x > 40 && x < 181) {
+                    x = 181;
+                }
+                //middle rectangle
+                if (y > 265 && y < 355 && x > 189 && x < 361) {
+                    x = 361;
+                }
+                //right rectangle
+                if (y > 265 && y < 355 && x > 369 && x < 511) {
+                    x = 511
+                }
+
+            }
+            if (keyIsDown(UP_ARROW)) {
+                y -= 5;
+                //walls
+                if (x >= 521 && y < 306) {
+                    y = 306
+                }
+                if (x <= 30 && y < 306) {
+                    y = 306
+                }
+                if (y <= 30) {
+                    y = 30;
+                }
+                //top left square
+                if (x > 40 && x < 271 && y < 251 && y > 40) {
+                    y = 251;
+                }
+                //top right square
+                if (x > 281 && x < 511 && y > 40 && y < 250) {
+                    y = 250;
+                }
+
+                //bottom left square
+                if (x > 40 && x < 270 && y < 581 && y > 390) {
+                    y = 581;
+                }
+                //bottom right square
+                if (x > 281 && x < 512 && y > 371 && y < 581) {
+                    y = 581;
+                }
+                //left rectangle
+                if (x > 40 && x < 180 && y > 264 && y < 356) {
+                    y = 356
+                }
+                //middle rectangle
+                if (y > 265 && y < 356 && x > 189 && x < 361) {
+                    y = 356;
+                }
+                //right rectangle
+                if (y > 265 && y < 356 && x > 369 && x < 510) {
+                    y = 356
+                }
+
+            }
+            if (keyIsDown(DOWN_ARROW)) {
+                y += 5;
+                //wall
+                if (y >= 590) {
+                    y = 590
+                }
+                if (x >= 521 && y > 315) {
+                    y = 315
+                }
+                if (x <= 30 && y > 315) {
+                    y = 315
+
+                }
+                //top left square
+                if (x > 40 && x < 270 && y < 251 && y > 39) {
+                    y = 39;
+                }
+                //top right square
+                if (x > 281 && x < 511 && y > 39 && y < 250) {
+                    y = 39;
+                }
+                //bottom left square
+                if (x > 40 && x < 270 && y < 581 && y > 369) {
+                    y = 369;
+                }
+                //bottom right square
+                if (x > 281 && x < 512 && y > 370 && y < 580) {
+                    y = 370;
+                }
+                //left rectangle
+                if (x > 40 && x < 180 && y > 264 && y < 356) {
+                    y = 264
+                }
+                //middle rectangle
+                if (y > 264 && y < 355 && x > 189 && x < 361) {
+                    y = 264;
+                }
+                //right rectangle
+                if (y > 264 && y < 356 && x > 369 && x < 510) {
+                    y = 264
+                }
+
+
+            }
+
+
+
+        }
+    </script>
+</head>
+
+<body>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/alexanderu1728/p5js/blob/master/conditionals-project.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+
+</html>
