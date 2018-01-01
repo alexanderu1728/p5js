@@ -1,0 +1,194 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title>Pong</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.13/p5.js"></script>
+    <script>
+        var ballX;
+        var ballY;
+        var ballSpeedX = 0;
+        var ballSpeedY = 0;
+        var paddleHeight = 30;
+        var elmayor = 300;
+        var mozart = 300;
+        var lax = 350
+        var a = false
+        var pt1 = 0
+        var pt2 = 0
+
+        function setup() {
+            createCanvas(800, 600);
+            noCursor();
+            ballX = 400;
+            ballY = 225;
+        }
+
+        function draw() {
+            background(255, 0, 0);
+            moveBall();
+            checkCollide();
+            drawPaddle();
+            drawBall();
+            textSize(32)
+            fill(102, 255, 56)
+            text(pt1, width / 2, height / 2 - 15);
+            fill(52, 116, 255)
+            text(pt2, width / 2 + 60, height / 2 - 15);
+
+            //player 1 movement
+            if (keyIsDown(LEFT_ARROW)) {
+                elmayor -= 5
+            }
+            if (keyIsDown(RIGHT_ARROW)) {
+                elmayor += 5
+            }
+            if (keyIsDown(65)) {
+                mozart -= 5
+            }
+            if (keyIsDown(68)) {
+                mozart += 5
+            }
+            //moving rectangle
+            if (a == true) {
+                lax += 2;
+            }
+            else {
+                lax -= 2
+            }
+            if (lax > 700) {
+                a = false
+
+            }
+            if (lax < 0) {
+                a = true
+            }
+            console.log(a)
+
+
+        }
+
+        function moveBall() {
+
+            ballX = ballX + ballSpeedX
+            ballY = ballY + ballSpeedY;
+
+            console.log("ballSpeedX: " + ballSpeedX +
+                ", ballSpeedY: " + ballSpeedY);
+
+        }
+
+        function checkCollide() {
+
+            //collision for moving rectangle
+            if (ballX > lax - 10 && ballX < lax + 110 && ballY > 235 && ballY < 310) {
+                ballSpeedX = ballSpeedX * -1;
+
+            }
+            if (ballX > lax - 10 && ballX < lax + 110 && ballY > 240 && ballY < 310) {
+                ballSpeedY = ballSpeedY * -1;
+
+            }
+            //horizontal collision
+            if (ballX < 0 || ballX > width) {
+                ballSpeedX = ballSpeedX * -1;
+
+            }
+            //vertical collsion
+            if (ballY < 0) {
+                ballSpeedY = ballSpeedY * -1;
+            }
+            //paddle collisioon
+            if (ballY > height - paddleHeight - 4 || ballY < 40) {
+                if (ballX > elmayor && ballX < elmayor + 200 || ballX > mozart && ballX < mozart + 200) {
+                    ballSpeedY = ballSpeedY * -1;
+                    ballSpeedX +=1
+                    ballSpeedY +=1
+                }
+                else if (ballY > height) {
+                    pt2 += 1
+                    ballX = 400;
+                    ballY = 225;
+                    ballSpeedX = 0
+                    ballSpeedY = 0
+                    //noLoop();
+
+                }
+                //score counter
+                if (ballY<0){
+                    pt1 +=1
+                    ballX = 400;
+                    ballY = 225;
+                    ballSpeedX = 0
+                    ballSpeedY = 0
+                }
+               
+            }
+
+
+        }
+
+
+
+        function drawBall() {
+            noStroke();
+            ellipse(ballX, ballY, 20, 20);
+        }
+
+        function drawPaddle() {
+            strokeWeight(4);
+            fill(255, 134, 53)
+            rect(lax, 250, 100, 50)//moving rectangle
+            fill(52, 116, 255)
+            rect(mozart, 4, 200, paddleHeight);//player 2
+            fill(102, 255, 56)
+            rect(elmayor, height - paddleHeight - 4, 200, paddleHeight);//player 1
+            //teletransportation player 1
+            if (elmayor == width) {
+                elmayor = -205
+            }
+            if (elmayor < -205) {
+                elmayor = width
+
+            }
+            //player 2
+            if (mozart == width) {
+                mozart = -205
+            }
+            if (mozart < -205) {
+                mozart = width
+
+            }
+        }
+
+        function mousePressed() {
+            //start of the game
+            if (ballSpeedX == 0) {
+                ballSpeedX = 3;
+                ballSpeedY = 3;
+            }
+            a = true
+        }
+
+        function ballgoesfaster() {
+
+        }
+    </script>
+</head>
+
+<body>
+<form><input TYPE="button" onClick="history.go(0)" value="Reset"></form>
+    <div id="code" class="container-fluid">
+        <script src="https://gist-it.appspot.com/github/alexanderu1728/p5js/blob/master/pong-remix.html?footer=0"></script>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+        $(window).bind("load", function() {
+            $('#code').before($('#defaultCanvas0').remove());
+        });
+    </script>
+</body>
+
+
+</html>
